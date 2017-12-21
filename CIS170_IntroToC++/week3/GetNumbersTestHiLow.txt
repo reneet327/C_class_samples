@@ -1,0 +1,48 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+const int TOTAL = 5;
+
+int main()
+{
+
+// intialize variables
+int num = 0;
+int sum = 0;
+int high = -1;
+int low = 101;
+cout << "Enter numbers between 0 and 100"<< endl;
+for (int i = 0; i < TOTAL; i++)
+{
+cout << "Enter number " << i + 1 << ": ";
+cin >> num;
+while(num<0 || num>100)
+{
+	cout<<"Please enter a number between 0 and 100"<<endl;
+	cout << "Enter number " << i + 1 << ": ";
+cin >> num;
+}
+
+// test if num is the highest
+if (num > high)
+high = num;
+// test if num is the lowest
+if (num < low)
+low = num;
+sum += num;
+}// end for
+cout << endl << endl;
+
+cout << setprecision(2) << fixed; //Display values 2 decimal places
+cout << "High was " << high << endl;
+cout << "Low was " << low << endl;
+cout << "Your total is " << sum << endl;
+//Show average value
+cout << "The average is " << sum/TOTAL << endl;
+
+system("pause");
+return 0;	
+	
+}
+

@@ -1,0 +1,146 @@
+//******************************************************
+// car.h file
+//******************************************************
+
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+class car {
+private:
+string make;
+string model;
+int speed;
+public:
+car(string mk, string mod, int sp); //Constructor 
+car(); //default constructor
+~car(); //Destructor
+void setMake(string mk);
+string getMake();
+void setModel(string mod);
+string getModel();
+void setSpeed(int sp);
+int getSpeed();
+void park();
+void drive();
+void driveMenu();
+void driveCar(int choice);
+};
+
+//******************************************************
+// car.cpp file
+//******************************************************
+#include "car.h"
+using namespace std;
+
+car::car(string mk, string mod, int sp){ //Constructor 
+make = mk;
+model=mod;
+speed = sp;
+}
+car::car(){ //Constructor 
+make = "Jeep";
+model="Cherokee";
+speed = 55;
+}
+car::~car(){}//Destructor
+void car::setMake(string mk){
+make = mk;
+}
+string car::getMake(){
+return make;
+}
+void car::setModel(string mod){
+model =  mod;
+}
+string car::getModel(){
+return model;
+}
+void car::setSpeed(int sp)
+{
+	speed = sp;
+}
+int car::getSpeed()
+{
+	return speed;
+}
+
+void car::park(){
+cout<<model<<" is parked"<<endl;
+}
+void car::drive(){
+cout<<model<<" is driving"<<endl;
+}
+void car::driveMenu()
+{
+cout << endl;
+cout << " Drive Menu " << endl << endl;
+cout << "1. Start engine " << endl;
+cout << "2. Accelerate " << endl;
+cout << "3. Brake" << endl;
+cout << "4. Turn off engine" << endl;
+cout << "5. Exit" << endl;
+cout << " Enter Choice: ";
+}
+
+void car::driveCar(int choice)
+{
+int changeMiles = 0;
+
+switch(choice)
+{
+case 1: cout << "Starting engine" << endl;
+break;
+case 2: cout << "How much faster do you want to go?: ";
+cin >> changeMiles;
+speed += changeMiles;
+cout << "Accelerate: You are now driving " << speed << " mph " << endl;
+break;
+case 3: cout << "How much slower do you want to go?: ";
+cin >> changeMiles;
+speed -= changeMiles;
+cout << "Brake: You are now driving " << speed << " mph " << endl;
+break;
+case 4: if ( speed > 0)
+cout << "You must stop before turning off the engine" << endl;
+else
+cout << "Shutting off engine" << endl;
+break;
+case 5: cout << "Good-Bye" << endl; break;
+default:
+cout << "invalid choice" << endl; break;
+}// switch
+}
+//******************************************************
+// carMain.cpp file
+//******************************************************
+#include "car.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+void  main(void){
+
+int choice = 0;
+car c1("Ford","Taurus",90);
+c1.park();
+c1.drive();
+c1.setModel("Mustang");
+c1.park();
+c1.drive();
+
+
+car c2;
+while(choice != 5)
+{
+c2.driveMenu();
+cin >> choice;
+c2.driveCar(choice);
+}
+
+system("pause");
+
+
+
+}

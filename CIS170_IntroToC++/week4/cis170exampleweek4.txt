@@ -1,0 +1,68 @@
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+
+int readPhoneNumber(char &d1, char &d2, char &d3, char &d4, char &d5, char &d6, char &d7, char &d8);
+
+int main()
+{
+
+	char d1, d2, d3, d4, d5, d6, d7, d8;
+	int checkValue;
+	do{
+	checkValue = readPhoneNumber(d1, d2, d3, d4, d5, d6, d7, d8);
+	if(checkValue==-5)
+	{
+		cout<<"Thank you for using the phone number checker - have a nice day"<<endl;
+		break;
+	}
+	if(checkValue==-1)
+		cout<<"Error!!! hyphen is not in the correct position"<<endl;
+	if(checkValue==-2)
+		cout<<"Error!!! phone number can not begin with 0"<<endl;
+	if(checkValue==-3)
+		cout<<"Error!!! phone number can not begin with 555"<<endl;
+	if(checkValue==0)
+		cout<<"Phone number dialed is "<<d1<<d2<<d3<<d4<<d5<<d6<<d7<<d8<<endl;
+	}while(true);
+	cin.ignore();
+	return 0;
+}
+int readPhoneNumber(char &d1, char &d2, char &d3, char &d4, char &d5, char &d6, char &d7, char &d8)
+{
+
+	cout<<"Please enter a phone number (Q to quit)";
+	cin>>d1;
+	if(d1=='Q') 
+		return -5; //return -5 to quit
+	cin>>d2>>d3>>d4>>d5>>d6>>d7>>d8;
+	if(d4!='-')
+	{
+		return -1;
+	}
+	if(d1=='0')
+		return -2;
+	if(d1=='5' && d2=='5' && d3=='5')
+		return -3;
+
+	return 0; //Good phone number!
+
+
+}
+int toDigit(char &d)
+{
+	d=toupper(d);
+	switch(d)
+	{
+	case 'A': case 'B': case 'C': case '2':
+		d='2';
+		break;
+		//all of the letters and numbers
+	default:
+		return -1;
+
+	
+	}
+	return 0;
+}

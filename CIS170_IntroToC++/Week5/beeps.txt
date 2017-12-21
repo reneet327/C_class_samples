@@ -1,0 +1,19 @@
+#include <Windows.h>
+void main()
+{
+//The imperial trooper march
+Beep(440, 500); Beep(440, 500); Beep(349, 350); Beep(523, 150); Beep(440, 500);
+Beep(349, 350); Beep(523, 150); Beep(440, 1000); Beep(659, 500); Beep(659, 500);
+Beep(659, 500); Beep(698, 350); Beep(523, 150); Beep(415, 500); Beep(349, 350);
+Beep(523, 150); Beep(440, 1000);
+system("pause");
+//Mission Impossible
+Beep(784, 150); Sleep(300); Beep(784, 150); Sleep(300); Beep(932, 150); Sleep(150);
+Beep(1047, 150); Sleep(150); Beep(784, 150); Sleep(300); Beep(784, 150); Sleep(300);
+Beep(699, 150); Sleep(150); Beep(740, 150); Sleep(150); Beep(784, 150); Sleep(300);
+Beep(784, 150); Sleep(300); Beep(932, 150); Sleep(150); Beep(1047, 150); Sleep(150);
+Beep(784, 150); Sleep(300); Beep(699, 150); Sleep(150);
+Beep(740, 150); Sleep(150); Beep(932, 150); Beep(784, 150); Beep(587, 1200); Sleep(75);
+Beep(932, 150); Beep(784, 150); Beep(554, 1200); Sleep(75); Beep(932, 150); Beep(784, 150);
+Beep(523, 1200); Sleep(150); Beep(466, 150); Beep(523, 150);
+}

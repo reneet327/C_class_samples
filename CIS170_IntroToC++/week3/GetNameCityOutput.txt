@@ -1,0 +1,6 @@
+#include <string>
+cout<<"Please enter your name: ";
+	getline(cin,name);
+	cout<<"Please enter the city: ";
+	getline(cin,city);
+	cout<<"Your name is "<<name<<" Your city is "<<city<<endl;

@@ -1,0 +1,22 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+//Declare and initialize variables
+const double PI= 3.14159;
+
+//Constants can not be changed after initializing
+int main() 
+{
+	double radius = 0,volume=0;
+	cout<<"Please enter the radius: ";
+	cin>>radius;
+	cout<<"The radius you entered is: "<<radius<<endl<<endl;
+	//Processing
+
+	volume = 4/3 * PI * radius * radius * radius;
+	cout<<"The volume is "<<volume<<endl;
+
+	system("pause");
+  return 0;
+}

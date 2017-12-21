@@ -1,0 +1,131 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+#include <ctype.h>
+
+ 
+using namespace std;
+const int ROWS = 3;
+const int COLS = 3;
+
+const unsigned char ULC = 201; //upper left corner
+const unsigned char HB = 205; //horizontal border
+const unsigned char URC = 187; //upper right corner
+const unsigned char VB = 186; //vertical border
+const unsigned char LRC = 188; //Lower right corner
+const unsigned char LLC = 200; //lower left corner
+
+const char Player1 = 'X';
+const char Player2 = 'O';
+const char MT = ' ';
+
+
+
+void DisplayGrid(char array[ROWS][COLS]);
+bool checkWin(char array[ROWS][COLS], char choice);
+
+int main () {
+  
+	
+	cout<<"Welcome to tic tac toe"<<endl;
+	int rowCommand=0, colCommand=0;
+	char gameOver='Y';
+
+	char boardArray[ROWS][COLS]; //Create the array
+	//Initialize  to all empty values
+	for(int i=0;i<ROWS;i++)
+	{
+		for(int j=0;j<COLS;j++)
+		{
+			boardArray[i][j]=MT;
+		}
+	}
+	
+	while(gameOver!='Q')
+	{
+		//Display game board
+
+
+		DisplayGrid(boardArray);
+		
+			do{
+		cout<<"\nPlayer 1, please type in a number for the row where you want to enter the X: ";
+		cin>>rowCommand;
+		cout<<"\nPlayer 1, please type in a number for the column where you want to enter the X: ";
+		cin>>colCommand;
+			
+			if(boardArray[rowCommand-1][colCommand-1]!=MT)
+				cout<<"Position is already occupied, type in another position"<<endl;
+			}while(boardArray[rowCommand-1][colCommand-1]!=MT);//end while
+			boardArray[rowCommand-1][colCommand-1]='X';
+			
+			 DisplayGrid(boardArray);
+			if(checkWin(boardArray,'X'))
+			{
+				cout<<"Congratulations Player 1! You win. "<<endl;
+				cout<<"Game over"<<endl;
+				break;
+			}
+			
+			do{
+			cout<<"\nPlayer 2, please type in a number for the row where you want to enter the O: ";
+		cin>>rowCommand;
+		cout<<"\nPlayer 2, please type in a number for the column where you want to enter the O: ";
+		cin>>colCommand;
+		
+			if(boardArray[rowCommand-1][colCommand-1]!=MT)
+				cout<<"Position is already occupied, type in another position"<<endl;
+
+		}while(boardArray[rowCommand-1][colCommand-1]!=MT);
+				boardArray[rowCommand-1][colCommand-1]='O';
+			DisplayGrid(boardArray);
+			if(checkWin(boardArray,'O'))
+			{
+				cout<<"Congratulations Player 2! You win. "<<endl;
+				cout<<"Game over"<<endl;
+				break;
+			}
+
+			cout<<"Do you want to keep playing? Q for quit, Y to keep playing: ";
+			cin>>gameOver;
+			gameOver= toupper(gameOver);
+	}
+		 cin.ignore(2);
+		 return 0;
+}
+
+void DisplayGrid(char boardArray[ROWS][COLS])
+{
+				cout<<MT<<MT<<'1'<< MT<<'2'<<MT<< '3'<< MT<<endl;
+		cout<<MT<<ULC<< HB<<HB<<HB<<HB<<HB<<URC<<endl;
+				cout<<'1'<< VB<< boardArray[0][0]<< VB<< boardArray[0][1]<< VB<< boardArray[0][2]<<  VB<<endl;
+			cout<<MT<< VB<< HB<< HB<< HB<< HB<< HB<< VB<<endl;
+	cout<<'2'<< VB<< boardArray[1][0]<< VB<< boardArray[1][1]<< VB<< boardArray[1][2]<<  VB<<endl;
+	cout<<MT<< VB<< HB<< HB<< HB<< HB<< HB<<  VB<<endl;
+	cout<<'3'<< VB<< boardArray[2][0]<< VB<< boardArray[2][1]<< VB<< boardArray[2][2]<<  VB<<endl;
+	
+		cout<<MT<< LLC<< HB<< HB<< HB<< HB<< HB<< LRC<<endl;
+}
+
+bool checkWin(char boardArray[ROWS][COLS], char choice)
+{
+	if(boardArray[0][0]==choice && boardArray[0][1]==choice && boardArray[0][2]==choice)
+		return true; //top row win
+	if(boardArray[1][0]==choice && boardArray[1][1]==choice && boardArray[1][2]==choice)
+		return true; //middle row win
+	if(boardArray[2][0]==choice && boardArray[2][1]==choice && boardArray[2][2]==choice)
+		return true; //last row win
+	if(boardArray[0][0]==choice && boardArray[1][0]==choice && boardArray[2][0]==choice)
+		return true;//first column win
+	if(boardArray[0][1]==choice && boardArray[1][1]==choice && boardArray[2][1]==choice)
+		return true;//second column win
+	if(boardArray[0][2]==choice && boardArray[1][2]==choice && boardArray[2][2]==choice)
+		return true; //third column win
+	if(boardArray[0][0]==choice && boardArray[1][1]==choice && boardArray[2][2]==choice)
+		return true; //top left to bottom right diag win
+	if(boardArray[2][0]==choice && boardArray[1][1]==choice && boardArray[0][2]==choice)
+		return true; //bottom left to upper right diag win
+
+	return false; //no winner
+}
+
